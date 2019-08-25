@@ -3,18 +3,18 @@
     <template>
       <b-navbar>
         <template slot="brand">
-          <b-navbar-item href="/">
-            <img src="../../public/img/icons/myGrocery.png" />
+          <b-navbar-item>
+            <img class="logoImg" src="../../public/img/icons/myGrocery.png" />
+            <b-input placeholder="Search for products" type="search"></b-input>
+            <a class="searchButton">Search</a>
           </b-navbar-item>
         </template>
         <template slot="end">
-          <b-navbar-item href="#">Home</b-navbar-item>
-          <b-navbar-item href="#">Buy</b-navbar-item>
+          <b-navbar-item>Home</b-navbar-item>
+          <b-navbar-item>Buy</b-navbar-item>
           <b-navbar-item tag="div">
             <div class="buttons">
-              <a class="button is-primary">
-                <strong>Sign up</strong>
-              </a>
+              <a class="button is-primary">Sign up</a>
               <a class="button is-light">Log in</a>
             </div>
           </b-navbar-item>
@@ -41,10 +41,61 @@ export default {
 
 <style scoped lang="scss">
 .navbar-item img {
-     max-height: 6rem; 
+  max-height: 6rem;
 }
 
-.button.is-primary { 
-      background-color: #7a8d35;
+.button.is-primary {
+  background-color: #7a8d35;
+}
+
+a.navbar-item,
+.navbar-link {
+  cursor: auto;
+}
+
+.searchButton {
+  background-color: #ec6f6b;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  border-radius: 4px;
+  border: 1px solid #f1504a;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 17px;
+  padding: 5px 9px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px#f1504a;
+}
+.searchButton:hover {
+  background-color: #f1504a;
+}
+.searchButton:active {
+  position: relative;
+  top: 0.5px;
+}
+
+.button.is-primary:active,
+.button.is-primary.is-active {
+  position: relative;
+  top: 0.5px;
+}
+
+.button.is-primary:hover,
+.button.is-primary.is-hovered {
+  background-color: #abcc32;
+}
+
+.input:focus {
+  border-color: blue;
+}
+
+.input:active {
+  border-color: blue;
+}
+
+.logoImg { 
+  cursor: pointer;
 }
 </style>
