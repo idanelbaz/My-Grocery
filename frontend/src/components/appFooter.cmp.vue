@@ -1,24 +1,31 @@
 <template>
   <section class="app-footer">
-
+    <div class="content has-text-centered">
+      <p>
+        <strong>My Grocery</strong> by
+        <a href="https://github.com/idanelbaz">Idan Elbaz</a>
+      </p>
+    </div>
   </section>
 </template>
 
 <script>
-
 export default {
   name: "appFooter",
-    data() {
-      return {};
-    },
+  data() {
+    return {};
+  },
 
   created() {},
   computed: {},
   methods: {},
-  components: {},
+  components: {}
 };
 </script>
 
 
 <style scoped lang="scss">
+a{ 
+  color: lightseagreen;
+}
 </style>

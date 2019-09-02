@@ -10,6 +10,7 @@ export default new Vuex.Store({
     state: {
         shopItems: null,
         currShopItem: null,
+        topSellers:null,
     },
     getters: {
         getShopItems(state) {
@@ -17,6 +18,9 @@ export default new Vuex.Store({
         },
         getShopItem(state) {
             return state.currShopItem;
+        },
+        getTopSellers(state){ 
+            return state.topSellers;
         },
     },
     mutations: {

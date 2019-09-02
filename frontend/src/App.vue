@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <appHeader></appHeader>
-    <router-view />
+    <router-view/>
     <appFooter></appFooter>
   </div>
 </template>
@@ -26,4 +26,9 @@ export default {
 
 
 <style lang="scss" scoped>
+body { 
+   font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    "Helvetica", "Arial", sans-serif;
+}
 </style>

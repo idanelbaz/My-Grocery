@@ -14,7 +14,7 @@
           <b-navbar-item>Buy</b-navbar-item>
           <b-navbar-item tag="div">
             <div class="buttons">
-              <a class="button is-primary">Sign up</a>
+              <a class="button is-light">Sign up</a>
               <a class="button is-light">Log in</a>
             </div>
           </b-navbar-item>
@@ -44,6 +44,12 @@ export default {
   max-height: 6rem;
 }
 
+a.navbar-item:hover {
+  color: #ec6f6b;
+  background-color: white;
+  cursor: pointer;
+}
+
 .button.is-primary {
   background-color: #7a8d35;
 }
@@ -62,7 +68,9 @@ a.navbar-item,
   display: inline-block;
   cursor: pointer;
   color: #ffffff;
-  font-family: Arial;
+  font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    "Helvetica", "Arial", sans-serif;
   font-size: 17px;
   padding: 5px 9px;
   text-decoration: none;
@@ -95,7 +103,7 @@ a.navbar-item,
   border-color: blue;
 }
 
-.logoImg { 
+.logoImg {
   cursor: pointer;
 }
 </style>
