@@ -106,4 +106,8 @@ a.navbar-item,
 .logoImg {
   cursor: pointer;
 }
+
+a.navbar-item {
+    padding: 8px;
+}
 </style>

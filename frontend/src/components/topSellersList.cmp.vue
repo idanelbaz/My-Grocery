@@ -4,7 +4,7 @@
       <h1>Best sellers</h1>
       <a>See more ></a>
     </div>
-    <carousel :navigationEnabled="true" :perPageCustom="[[500, 2], [768, 4]]">
+    <carousel :navigationEnabled="true" :perPageCustom="[[375,1] ,[500,1] ,[768, 5]]">
       <slide v-for="item in shopItemsTopSellers" :key="item._id">
         <item-card-preview :item="item"></item-card-preview>
       </slide>
@@ -49,8 +49,8 @@ export default {
 
 <style scoped lang="scss">
 .top-sellers-list {
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 6rem;
+  padding-right: 6rem;
   padding-top: 30px;
 }
 
@@ -69,4 +69,5 @@ a {
   font-size: 15px;
   line-height: 39px;
 }
+
 </style>
