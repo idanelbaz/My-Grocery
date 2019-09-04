@@ -28,4 +28,9 @@ export default {
 a{ 
   color: lightseagreen;
 }
+
+.app-footer { 
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
 </style>

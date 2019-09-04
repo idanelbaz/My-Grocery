@@ -2,19 +2,19 @@
   <section class="top-sellers-list">
     <div class="section-header-container">
       <h1>Best sellers</h1>
-      <a>See more ></a>
     </div>
-    <carousel :navigationEnabled="true" :perPageCustom="[[375,1] ,[500,1] ,[768, 5]]">
+    <carousel :paginationEnabled="false" :navigationEnabled="true" :perPageCustom="[[375,1] ,[500,1] ,[768, 5]]">
       <slide v-for="item in shopItemsTopSellers" :key="item._id">
         <item-card-preview :item="item"></item-card-preview>
       </slide>
     </carousel>
+    <a>See more ></a>
   </section>
 </template>
 
 <script>
 import { Carousel, Slide } from "vue-carousel";
-import itemCardPreview from '../components/itemCardPreview.cmp'
+import itemCardPreview from "../components/itemCardPreview.cmp";
 
 export default {
   name: "topSellersList",
@@ -57,6 +57,7 @@ export default {
 .section-header-container {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 1rem;
 }
 
 h1 {
@@ -70,4 +71,11 @@ a {
   line-height: 39px;
 }
 
+@media screen and (max-width: 600px) {
+.top-sellers-list {
+  padding-left: 3rem;
+  padding-right: 3rem;
+  padding-top: 30px;
+}
+}
 </style>

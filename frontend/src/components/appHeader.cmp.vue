@@ -5,7 +5,7 @@
         <template slot="brand">
           <b-navbar-item>
             <img class="logoImg" src="../../public/img/icons/myGrocery.png" />
-            <b-input placeholder="Search for products" type="search"></b-input>
+            <b-input class="input" placeholder="Search for products" type="search"></b-input>
             <a class="searchButton">Search</a>
           </b-navbar-item>
         </template>
@@ -72,7 +72,7 @@ a.navbar-item,
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     "Helvetica", "Arial", sans-serif;
   font-size: 17px;
-  padding: 5px 9px;
+  padding: 4px 9px;
   text-decoration: none;
   text-shadow: 0px 1px 0px#f1504a;
 }
@@ -108,6 +108,26 @@ a.navbar-item,
 }
 
 a.navbar-item {
-    padding: 8px;
+  padding: 8px;
+}
+
+.input{ 
+  padding: 0;
+}
+
+@media screen and (max-width: 500px) {
+  .searchButton {
+    position: absolute;
+    top: 65px;
+    left: 124px;
+    width: 197px;
+    text-align: center;
+  }
+
+  .input {
+    top: -13px;
+    left: -6px;
+    padding: 0;
+  }
 }
 </style>

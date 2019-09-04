@@ -1,7 +1,7 @@
 <template>
   <section v-if="item" class="item-card-preview">
     <div class="card">
-      <div class="card-image">
+      <div :title="item.name" class="card-image">
         <figure class="image is-4by3">
           <img class="itemImg" :src="item.img" />
         </figure>
@@ -45,7 +45,7 @@ export default {
   max-width: fit-content;
 }
 
-.card { 
+.card {
   height: 21rem;
 }
 </style>

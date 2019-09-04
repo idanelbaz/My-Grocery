@@ -2,13 +2,14 @@
   <section class="home-page">
     <top-menu></top-menu>
     <top-sellers-list v-if="shopItems" :shopItems="shopItems"></top-sellers-list>
-    <!-- <benefits></benefits>  -->
+   <more-genre></more-genre>
   </section>
 </template>
 
 <script>
 import topMenu from "../components/topMenu.cmp";
 import topSellersList from "../components/topSellersList.cmp";
+import moreGenre from "../components/moreGenre.cmp";
 
 export default {
   name: "homepage",
@@ -27,7 +28,8 @@ export default {
   methods: {},
   components: {
     topMenu,
-    topSellersList
+    topSellersList,
+    moreGenre,
   }
 };
 </script>
