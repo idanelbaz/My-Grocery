@@ -4,13 +4,13 @@
       <b-navbar>
         <template slot="brand">
           <b-navbar-item>
-            <img class="logoImg" src="../../public/img/icons/myGrocery.png" />
+            <img @click="goHome" class="logoImg" src="../../public/img/icons/myGrocery.png" />
             <b-input class="input" placeholder="Search for products" type="search"></b-input>
             <a class="searchButton">Search</a>
           </b-navbar-item>
         </template>
         <template slot="end">
-          <b-navbar-item>Home</b-navbar-item>
+          <b-navbar-item tag="router-link" :to="{ path: '/' }">Home</b-navbar-item>
           <b-navbar-item>Buy</b-navbar-item>
           <b-navbar-item tag="div">
             <div class="buttons">
@@ -33,7 +33,11 @@ export default {
 
   created() {},
   computed: {},
-  methods: {},
+  methods: {
+    goHome(){ 
+      this.$router.push('/');
+    }
+  },
   components: {}
 };
 </script>

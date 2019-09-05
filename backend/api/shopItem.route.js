@@ -43,6 +43,21 @@ router.get('/:id', async (req, res) => {
     }
 })
 
+// shopItems List - only from the same genre
+
+router.get('/byGenre/:genre', async (req, res) => {
+    const genre = req.params.genre
+    console.log(genre)
+    const shopItems = await shopItemService.getByGenre(genre)
+    try {
+        res.json(shopItems)
+    } catch {
+        res.status(404).send('UNKNOWN item')
+    }
+})
+
+
+
 // shopItem Delete
 
 router.delete('/:id', requireAuth, async (req, res) => {

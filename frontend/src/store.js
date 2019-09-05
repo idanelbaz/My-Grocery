@@ -11,6 +11,7 @@ export default new Vuex.Store({
         shopItems: null,
         currShopItem: null,
         topSellers:null,
+        itemsToShowSame:null,
     },
     getters: {
         getShopItems(state) {
@@ -22,6 +23,9 @@ export default new Vuex.Store({
         getTopSellers(state){ 
             return state.topSellers;
         },
+        getItemsToShowSame(state){ 
+            return state.itemsToShowSame;
+        }
     },
     mutations: {
         setShopItems(state, { shopItems }) {
@@ -41,6 +45,9 @@ export default new Vuex.Store({
             const idx = state.shopItems.findIndex(shopItem => shopItem._id === updatedShopItem._id)
             state.shopItems.splice(idx, 1, updatedShopItem);
         },
+        setShopItemsToShowSame(state, { sortedShopItems }) { 
+            state.itemsToShowSame = sortedShopItems;
+        }
     },
     actions: {
         async loadShopItems(context) {
@@ -100,5 +107,18 @@ export default new Vuex.Store({
             }
 
         },
+
+        async loadShopItemsToShowSame(context, {shopItem}) {
+            const sortedShopItems = await shopItemService.queryTheSameItems(shopItem.genre)
+            try {
+                context.commit({
+                    type: 'setShopItemsToShowSame',
+                    sortedShopItems
+                })
+            } catch (err) {
+                console.log(err);
+            }
+        },
+
     }
 })

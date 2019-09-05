@@ -1,8 +1,9 @@
 <template>
   <section class="home-page">
     <top-menu></top-menu>
-    <top-sellers-list v-if="shopItems" :shopItems="shopItems"></top-sellers-list>
-   <more-genre></more-genre>
+    <top-sellers-list @goToDetails="goToDetails" v-if="shopItems" :shopItems="shopItems"></top-sellers-list>
+    <more-genre></more-genre>
+    <on-sale-list @goToDetails="goToDetails" v-if="shopItems" :shopItems="shopItems"></on-sale-list>
   </section>
 </template>
 
@@ -10,6 +11,7 @@
 import topMenu from "../components/topMenu.cmp";
 import topSellersList from "../components/topSellersList.cmp";
 import moreGenre from "../components/moreGenre.cmp";
+import onSaleList from "../components/onSaleList.cmp";
 
 export default {
   name: "homepage",
@@ -25,11 +27,16 @@ export default {
     });
   },
   computed: {},
-  methods: {},
+  methods: {
+    goToDetails(itemId) {
+      this.$router.push(`/item/${itemId}`)
+    }
+  },
   components: {
     topMenu,
     topSellersList,
     moreGenre,
+    onSaleList
   }
 };
 </script>

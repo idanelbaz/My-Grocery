@@ -8,6 +8,7 @@ export default {
     remove,
     getById,
     update,
+    queryTheSameItems
 }
 
 
@@ -18,6 +19,10 @@ function _getUrl(id = '') {
 
 function query() {
     return httpService.get(_getUrl())
+}
+
+function queryTheSameItems(genre){ 
+    return httpService.get(_getUrl(`byGenre/${genre}`))
 }
 
 function getById(shopItemId) {

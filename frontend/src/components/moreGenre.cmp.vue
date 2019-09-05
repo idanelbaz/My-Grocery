@@ -1,7 +1,7 @@
 <template>
   <section class="more-genre">
     <div class="section-header-container">
-      <h1>More products</h1>
+      <h1>MORE PRODUCTS</h1>
     </div>
     <div class="genreContainer">
       <div class="genreFruitAndVeg" title="Fruits and Vegetables">
@@ -41,7 +41,7 @@ export default {
 .more-genre {
   padding-left: 6rem;
   padding-right: 6rem;
-  margin-top: 2rem;
+  margin-top: 4rem;
 }
 
 h1 {

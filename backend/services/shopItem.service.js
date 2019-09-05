@@ -9,6 +9,7 @@ module.exports = {
     remove,
     add,
     update,
+    getByGenre,
 }
 
 async function query() {
@@ -29,6 +30,17 @@ async function getById(shopItemId) {
         return shopItem
     } catch (err) {
         console.log(`ERROR: cannot find shop Item ${shopItemId}`)
+        throw err;
+    }
+}
+
+async function getByGenre(genre) {
+    const collection = await dbService.getCollection('shopItem')
+    try {
+        const shopItems = await collection.find({ "genre": genre }).toArray();
+        return shopItems
+    } catch (err) {
+        console.log(`ERROR: cannot find shop Item ${genre}`)
         throw err;
     }
 }
