@@ -57,6 +57,33 @@ router.get('/byGenre/:genre', async (req, res) => {
 })
 
 
+// shopItems list - only by baseGenre 
+
+router.get('/byBaseGenre/:baseGenre', async (req, res) => {
+    const baseGenre = req.params.baseGenre
+    console.log(baseGenre)
+    const shopItems = await shopItemService.getByBaseGenre(baseGenre)
+    try {
+        res.json(shopItems)
+    } catch {
+        res.status(404).send('UNKNOWN item')
+    }
+})
+
+// shopItems list - by search
+
+router.get('/bySearch/:filterBy', async (req, res) => {
+    const filterBy = req.params.filterBy
+    console.log(filterBy)
+    const shopItems = await shopItemService.getBySearch(filterBy)
+    try {
+        res.json(shopItems)
+    } catch {
+        res.status(404).send('UNKNOWN item')
+    }
+})
+
+
 
 // shopItem Delete
 

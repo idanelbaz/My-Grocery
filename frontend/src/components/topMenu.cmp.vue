@@ -1,7 +1,7 @@
 <template>
   <section class="top-menu">
     <div class="mainImg">
-      <a href="#" class="myButton">Start buying</a>
+      <router-link to="/Items" class="myButton">Start buying</router-link>
     </div>
   </section>
 </template>

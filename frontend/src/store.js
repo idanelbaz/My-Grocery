@@ -12,6 +12,7 @@ export default new Vuex.Store({
         currShopItem: null,
         topSellers:null,
         itemsToShowSame:null,
+        itemsToShow:null,
     },
     getters: {
         getShopItems(state) {
@@ -25,6 +26,9 @@ export default new Vuex.Store({
         },
         getItemsToShowSame(state){ 
             return state.itemsToShowSame;
+        },
+        getItemsToShow(state){ 
+            return state.itemsToShow;
         }
     },
     mutations: {
@@ -47,6 +51,9 @@ export default new Vuex.Store({
         },
         setShopItemsToShowSame(state, { sortedShopItems }) { 
             state.itemsToShowSame = sortedShopItems;
+        },
+        setShopItemsToShow(state, { sortedShopItems }) { 
+            state.itemsToShow = sortedShopItems;
         }
     },
     actions: {
@@ -113,6 +120,30 @@ export default new Vuex.Store({
             try {
                 context.commit({
                     type: 'setShopItemsToShowSame',
+                    sortedShopItems
+                })
+            } catch (err) {
+                console.log(err);
+            }
+        },
+
+        async loadShopItemsToBaseGenre(context, {baseGenre}) {
+            const sortedShopItems = await shopItemService.querySortedByBaseGenre(baseGenre)
+            try {
+                context.commit({
+                    type: 'setShopItemsToShow',
+                    sortedShopItems
+                })
+            } catch (err) {
+                console.log(err);
+            }
+        },
+
+        async loadShopItemsByFilter(context, {searchBy}) {
+            const sortedShopItems = await shopItemService.querySortedBySearch(searchBy)
+            try {
+                context.commit({
+                    type: 'setShopItemsToShow',
                     sortedShopItems
                 })
             } catch (err) {

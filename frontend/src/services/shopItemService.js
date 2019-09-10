@@ -8,7 +8,9 @@ export default {
     remove,
     getById,
     update,
-    queryTheSameItems
+    queryTheSameItems,
+    querySortedByBaseGenre,
+    querySortedBySearch,
 }
 
 
@@ -23,6 +25,15 @@ function query() {
 
 function queryTheSameItems(genre){ 
     return httpService.get(_getUrl(`byGenre/${genre}`))
+}
+
+
+function querySortedByBaseGenre(baseGenre) { 
+    return httpService.get(_getUrl(`byBaseGenre/${baseGenre}`))
+}
+
+function querySortedBySearch(filterBy) { 
+    return httpService.get(_getUrl(`bySearch/${filterBy}`))
 }
 
 function getById(shopItemId) {

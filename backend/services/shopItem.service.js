@@ -10,6 +10,8 @@ module.exports = {
     add,
     update,
     getByGenre,
+    getByBaseGenre,
+    getBySearch,
 }
 
 async function query() {
@@ -45,6 +47,27 @@ async function getByGenre(genre) {
     }
 }
 
+async function getByBaseGenre(baseGenre) {
+    const collection = await dbService.getCollection('shopItem')
+    try {
+        const shopItems = await collection.find({ "baseGenre": baseGenre }).toArray();
+        return shopItems
+    } catch (err) {
+        console.log(`ERROR: cannot find shop Item ${baseGenre}`)
+        throw err;
+    }
+}
+
+async function getBySearch(filterBy) {
+    const collection = await dbService.getCollection('shopItem')
+    try {
+        const shopItems = await collection.find({ "name" : new RegExp(filterBy, 'i') }).toArray();
+        return shopItems
+    } catch (err) {
+        console.log(`ERROR: cannot find shop Item ${filterBy}`)
+        throw err;
+    }
+}
 
 async function remove(shopItemId) {
     const collection = await dbService.getCollection('shopItem')

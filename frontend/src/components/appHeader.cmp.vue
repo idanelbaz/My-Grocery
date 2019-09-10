@@ -5,13 +5,18 @@
         <template slot="brand">
           <b-navbar-item>
             <img @click="goHome" class="logoImg" src="../../public/img/icons/myGrocery.png" />
-            <b-input class="input" placeholder="Search for products" type="search"></b-input>
-            <a class="searchButton">Search</a>
+            <b-input
+              v-model="searchItem"
+              class="input"
+              placeholder="Search for products"
+              type="search"
+            ></b-input>
+            <a @click="goSearchItem()" class="searchButton">Search</a>
           </b-navbar-item>
         </template>
         <template slot="end">
           <b-navbar-item tag="router-link" :to="{ path: '/' }">Home</b-navbar-item>
-          <b-navbar-item>Buy</b-navbar-item>
+          <b-navbar-item tag="router-link" :to="{ path: '/items' }">Buy</b-navbar-item>
           <b-navbar-item tag="div">
             <div class="buttons">
               <a class="button is-light">Sign up</a>
@@ -28,14 +33,24 @@
 export default {
   name: "appHeader",
   data() {
-    return {};
+    return {
+      searchItem: ""
+    };
   },
 
   created() {},
   computed: {},
   methods: {
-    goHome(){ 
-      this.$router.push('/');
+    goHome() {
+      this.$router.push("/");
+    },
+    goSearchItem() {
+      this.$store
+        .dispatch({ type: "loadShopItemsByFilter", searchBy: this.searchItem })
+        .then(() => {
+          if (this.$route.params.filterBy) return;
+          else this.$router.push(`/Items/search/filter`);
+        });
     }
   },
   components: {}
@@ -115,8 +130,12 @@ a.navbar-item {
   padding: 8px;
 }
 
-.input{ 
+.input {
   padding: 0;
+}
+
+.hidden {
+  display: none;
 }
 
 @media screen and (max-width: 500px) {

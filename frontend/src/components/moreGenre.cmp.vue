@@ -4,18 +4,18 @@
       <h1>MORE PRODUCTS</h1>
     </div>
     <div class="genreContainer">
-      <div class="genreFruitAndVeg" title="Fruits and Vegetables">
+      <div @click="goToFruitsList" class="genreFruitAndVeg" title="Fruits and Vegetables">
         <div class="genreTag">Fruits and Vegetables</div>
       </div>
       <div class="middleContainer">
-        <div class="genreFreshMeat" title="Fresh Meat">
+        <div @click="goToMeatList" class="genreFreshMeat" title="Fresh Meat">
           <div class="genreTag">Fresh Meat</div>
         </div>
-        <div class="genreBakery" title="Bakery">
+        <div @click="goToBakeryList" class="genreBakery" title="Bakery">
           <div class="genreTag">Bakery</div>
         </div>
       </div>
-      <div class="genreWineAndBeers" title="Wine and Beers">
+      <div @click="goToWinesList" class="genreWineAndBeers" title="Wine and Beers">
         <div class="genreTag">Wine and Beers</div>
       </div>
     </div>
@@ -31,7 +31,20 @@ export default {
   },
   created() {},
   computed: {},
-  methods: {},
+  methods: {
+    goToMeatList(){ 
+      this.$router.push('/items/meat')
+    },
+    goToFruitsList(){ 
+      this.$router.push('/items/fruits')
+    },
+    goToBakeryList(){ 
+      this.$router.push('/items/bakery')
+    },
+    goToWinesList(){ 
+      this.$router.push('/items/wines')
+    },
+  },
   components: {}
 };
 </script>
