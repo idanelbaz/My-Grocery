@@ -5,12 +5,12 @@ module.exports = {
     getCollection
 }
 
-const url = 'mongodb+srv://idanel:saribeni12@cluster0-cquxv.mongodb.net/test?retryWrites=true&w=majority';
+// const url = 'mongodb+srv://idanel:saribeni12@cluster0-cquxv.mongodb.net/test?retryWrites=true&w=majority';
 
 
-// const url = (process.env.NODE_ENV === 'production') ?
-//     'mongodb+srv://idan:saribeni12@cluster0-xnd7v.mongodb.net/test?retryWrites=true&w=majority' :
-//     'mongodb://localhost:27017';
+const url = (process.env.NODE_ENV === 'production') ?
+    'mongodb+srv://idanel:saribeni12@cluster0-cquxv.mongodb.net/test?retryWrites=true&w=majority' :
+    'mongodb://localhost:27017';
 
 
 

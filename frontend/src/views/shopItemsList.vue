@@ -2,20 +2,64 @@
   <section class="shop-items-list">
     <div class="main-container">
       <div class="genreList">
-        <div :class="{ active: isActiveGenre.isFruitsActive }" class="genre">Fruits</div>
-        <div :class="{ active: isActiveGenre.isVegetablesActive}" class="genre">Vegetables</div>
-        <div :class="{ active: isActiveGenre.isBakeryActive}" class="genre">Bakery</div>
-        <div :class="{ active: isActiveGenre.isWinesActive}" class="genre">Wines</div>
-        <div :class="{ active: isActiveGenre.isBeersActive}" class="genre">Beers</div>
-        <div :class="{ active: isActiveGenre.isMeatActive}" class="genre">Fresh Meat</div>
-        <div :class="{ active: isActiveGenre.isFishsActive}" class="genre">Fresh Fishs</div>
-        <div :class="{ active: isActiveGenre.isSaucesActive}" class="genre">Sauces</div>
-        <div :class="{ active: isActiveGenre.isFrozenActive}" class="genre">Frozen</div>
-        <div :class="{ active: isActiveGenre.isSnacksActive}" class="genre">Nuts and Snacks</div>
-        <div :class="{ active: isActiveGenre.isDrinksActive}" class="genre">Soft Drinks</div>
+        <div
+          @click="fruitsSelected"
+          :class="{ active: isActiveGenre.isFruitsActive }"
+          class="genre"
+        >Fruits</div>
+        <div
+          @click="vegetablesSelected"
+          :class="{ active: isActiveGenre.isVegetablesActive}"
+          class="genre"
+        >Vegetables</div>
+        <div
+          @click="bakerySelected"
+          :class="{ active: isActiveGenre.isBakeryActive}"
+          class="genre"
+        >Bakery</div>
+        <div
+          @click="winesSelected"
+          :class="{ active: isActiveGenre.isWinesActive}"
+          class="genre"
+        >Wines</div>
+        <div
+          @click="beersSelected"
+          :class="{ active: isActiveGenre.isBeersActive}"
+          class="genre"
+        >Beers</div>
+        <div
+          @click="meatSelected"
+          :class="{ active: isActiveGenre.isMeatActive}"
+          class="genre"
+        >Fresh Meat</div>
+        <div
+          @click="fishsSelected"
+          :class="{ active: isActiveGenre.isFishsActive}"
+          class="genre"
+        >Fresh Fishs</div>
+        <div
+          @click="saucesSelected"
+          :class="{ active: isActiveGenre.isSaucesActive}"
+          class="genre"
+        >Sauces</div>
+        <div
+          @click="frozenSelected"
+          :class="{ active: isActiveGenre.isFrozenActive}"
+          class="genre"
+        >Frozen</div>
+        <div
+          @click="snacksSelected"
+          :class="{ active: isActiveGenre.isSnacksActive}"
+          class="genre"
+        >Nuts and Snacks</div>
+        <div
+          @click="drinksSelected"
+          :class="{ active: isActiveGenre.isDrinksActive}"
+          class="genre"
+        >Soft Drinks</div>
       </div>
       <b-field class="genreListMobile">
-        <b-select>
+        <b-select v-model="selected" @input="changeBaseGenre($event)">
           <option value="fruits">Fruits</option>
           <option value="vegetables">Vegetables</option>
           <option value="bakery">Bakery</option>
@@ -49,6 +93,7 @@ export default {
   data() {
     return {
       shopItems: null,
+      selected: "",
       isActiveGenre: {
         isFruitsActive: false,
         isVegetablesActive: false,
@@ -69,23 +114,28 @@ export default {
     var shopItemsToShow = this.$route.params;
     if (!shopItemsToShow.genre && !shopItemsToShow.filterBy) {
       this.isActiveGenre.isFruitsActive = true;
+      this.selected = "fruits";
       var baseGenre = "fruits";
       this.$store.dispatch({ type: "loadShopItemsToBaseGenre", baseGenre });
     } else if (shopItemsToShow.genre) {
       if (shopItemsToShow.genre === "meat") {
         this.isActiveGenre.isMeatActive = true;
+        this.selected = "meat";
         var baseGenre = "meat";
         this.$store.dispatch({ type: "loadShopItemsToBaseGenre", baseGenre });
       } else if (shopItemsToShow.genre === "fruits") {
         this.isActiveGenre.isFruitsActive = true;
+        this.selected = "fruits";
         var baseGenre = "fruits";
         this.$store.dispatch({ type: "loadShopItemsToBaseGenre", baseGenre });
       } else if (shopItemsToShow.genre === "bakery") {
         this.isActiveGenre.isBakeryActive = true;
+        this.selected = "bakery";
         var baseGenre = "bakery";
         this.$store.dispatch({ type: "loadShopItemsToBaseGenre", baseGenre });
       } else if (shopItemsToShow.genre === "wines") {
         this.isActiveGenre.isWinesActive = true;
+        this.selected = "wines";
         var baseGenre = "wines";
         this.$store.dispatch({ type: "loadShopItemsToBaseGenre", baseGenre });
       }
@@ -99,6 +149,122 @@ export default {
   methods: {
     goToDetails(itemId) {
       this.$router.push(`/item/${itemId}`);
+    },
+    changeBaseGenre(event) {
+      this.$store.dispatch({
+        type: "loadShopItemsToBaseGenre",
+        baseGenre: event
+      });
+    },
+    fruitsSelected() {
+      for (var isActive in this.isActiveGenre) {
+        this.isActiveGenre[isActive] = false;
+      }
+      this.isActiveGenre.isFruitsActive = true;
+      this.$store.dispatch({
+        type: "loadShopItemsToBaseGenre",
+        baseGenre: "fruits"
+      });
+    },
+    vegetablesSelected() {
+      for (var isActive in this.isActiveGenre) {
+        this.isActiveGenre[isActive] = false;
+      }
+      this.isActiveGenre.isVegetablesActive = true;
+      this.$store.dispatch({
+        type: "loadShopItemsToBaseGenre",
+        baseGenre: "vegetables"
+      });
+    },
+    bakerySelected() {
+      for (var isActive in this.isActiveGenre) {
+        this.isActiveGenre[isActive] = false;
+      }
+      this.isActiveGenre.isBakeryActive = true;
+      this.$store.dispatch({
+        type: "loadShopItemsToBaseGenre",
+        baseGenre: "bakery"
+      });
+    },
+    winesSelected() {
+      for (var isActive in this.isActiveGenre) {
+        this.isActiveGenre[isActive] = false;
+      }
+      this.isActiveGenre.isWinesActive = true;
+      this.$store.dispatch({
+        type: "loadShopItemsToBaseGenre",
+        baseGenre: "wines"
+      });
+    },
+    beersSelected() {
+      for (var isActive in this.isActiveGenre) {
+        this.isActiveGenre[isActive] = false;
+      }
+      this.isActiveGenre.isBeersActive = true;
+      this.$store.dispatch({
+        type: "loadShopItemsToBaseGenre",
+        baseGenre: "beers"
+      });
+    },
+    meatSelected() {
+      for (var isActive in this.isActiveGenre) {
+        this.isActiveGenre[isActive] = false;
+      }
+      this.isActiveGenre.isMeatActive = true;
+      this.$store.dispatch({
+        type: "loadShopItemsToBaseGenre",
+        baseGenre: "meat"
+      });
+    },
+    fishsSelected() {
+      for (var isActive in this.isActiveGenre) {
+        this.isActiveGenre[isActive] = false;
+      }
+      this.isActiveGenre.isFishsActive = true;
+      this.$store.dispatch({
+        type: "loadShopItemsToBaseGenre",
+        baseGenre: "fishs"
+      });
+    },
+    saucesSelected() {
+      for (var isActive in this.isActiveGenre) {
+        this.isActiveGenre[isActive] = false;
+      }
+      this.isActiveGenre.isSaucesActive = true;
+      this.$store.dispatch({
+        type: "loadShopItemsToBaseGenre",
+        baseGenre: "sauces"
+      });
+    },
+    frozenSelected() {
+      for (var isActive in this.isActiveGenre) {
+        this.isActiveGenre[isActive] = false;
+      }
+      this.isActiveGenre.isFrozenActive = true;
+      this.$store.dispatch({
+        type: "loadShopItemsToBaseGenre",
+        baseGenre: "frozen"
+      });
+    },
+    snacksSelected() {
+      for (var isActive in this.isActiveGenre) {
+        this.isActiveGenre[isActive] = false;
+      }
+      this.isActiveGenre.isSnacksActive = true;
+      this.$store.dispatch({
+        type: "loadShopItemsToBaseGenre",
+        baseGenre: "snacks"
+      });
+    },
+    drinksSelected() {
+      for (var isActive in this.isActiveGenre) {
+        this.isActiveGenre[isActive] = false;
+      }
+      this.isActiveGenre.isDrinksActive = true;
+      this.$store.dispatch({
+        type: "loadShopItemsToBaseGenre",
+        baseGenre: "drinks"
+      });
     }
   },
   components: {
