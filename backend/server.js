@@ -32,6 +32,8 @@ app.use(session({
 
 const shopItemRoute = require('./api/shopItem.route');
 app.use('/api/shopItem', shopItemRoute)
+const userRoute = require('./api/user.route');
+app.use('/api/user', userRoute)
 
 app.get('/', (req, res) => res.send('Hello Shop!'))
 

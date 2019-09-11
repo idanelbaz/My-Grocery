@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import shopItemService from "./services/shopItemService"
+import userService from './services/userService'
 
 
 
@@ -13,6 +14,7 @@ export default new Vuex.Store({
         topSellers:null,
         itemsToShowSame:null,
         itemsToShow:null,
+        loggedInUser:null,
     },
     getters: {
         getShopItems(state) {
@@ -29,7 +31,10 @@ export default new Vuex.Store({
         },
         getItemsToShow(state){ 
             return state.itemsToShow;
-        }
+        },
+        getLoggedInUser(state){ 
+            return state.loggedInUser;
+        },
     },
     mutations: {
         setShopItems(state, { shopItems }) {
@@ -54,7 +59,13 @@ export default new Vuex.Store({
         },
         setShopItemsToShow(state, { sortedShopItems }) { 
             state.itemsToShow = sortedShopItems;
-        }
+        },
+        setLoginUser(state, {currUserLoggedIn}) {
+            state.loggedInUser = currUserLoggedIn;
+        },
+        setLoggedOutUser(state) {
+            state.loggedInUser = null;
+        },
     },
     actions: {
         async loadShopItems(context) {
@@ -149,6 +160,44 @@ export default new Vuex.Store({
             } catch (err) {
                 console.log(err);
             }
+        },
+
+        async userLogout(context) {
+            await userService.logOut()
+            try {
+                context.commit({
+                    type: 'setLoggedOutUser'
+                })
+            } catch (err) {
+                console.log(err);
+            }
+        },
+
+        async userSignup(context, { user }) {
+            const userSignedUp = await userService.signUp(user)
+            try {
+                context.commit({
+                    type: 'setLoginUser',
+                    currUserLoggedIn: userSignedUp
+                })
+                console.log('This is Great signup!', userSignedUp)
+            } catch (err) {
+                console.log(err);
+            }
+
+        },
+
+        async userLogin(context, { currUser }) {
+            const currUserLoggedIn = await userService.logIn(currUser)
+            try {
+                context.commit({
+                    type: 'setLoginUser',
+                    currUserLoggedIn: currUserLoggedIn
+                })
+            } catch (err) {
+                console.log(err);
+            }
+
         },
 
     }

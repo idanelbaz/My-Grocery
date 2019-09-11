@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.179eeb4afe03787dbe04ac36b9a5d144.js"
+  "/precache-manifest.a3fecbccc3b3e64cf57ea874e5c29042.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "grocery-shop"});
